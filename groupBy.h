@@ -96,7 +96,7 @@ namespace details
 
 template< typename Iterator, typename F, typename... Fs >
 typename details::GroupBy< typename std::iterator_traits< Iterator >::value_type, F, Fs... >::return_type
-groupBy( Iterator begin, Iterator const end, const F& f, Fs... fs )
+groupBy( Iterator begin, Iterator const end, F f, Fs... fs )
 {
     typename details::GroupBy< typename std::iterator_traits< Iterator >::value_type, F, Fs... >::return_type result;
 

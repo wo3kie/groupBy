@@ -1,20 +1,20 @@
+## Copyright (C) 2014 Lukasz Czerwinski
+  
 ## GroupBy
 groupBy is a simple project. In fact this is just one function only. The function takes a container and groups its items by a given key.
   
-## Copyright (C) 2014 Lukasz Czerwinski
-  
 ## Requirements
 C++11  
-  
-## How to use is?
-For a given container with objects of type T
 
-    struct T
-    {
-        int i;
-        float f;
-        char c;
-    };
+## How to compile it
+clang++ --std=c++11 main.cpp -o main
+
+## Tested with
+clang++-3.5
+g++-4.9
+
+## How to use it?
+For a given container with objects of type T
 
     std::vector< T > v{ {
         T{ 1, 1.1f, 'a' },
@@ -23,6 +23,16 @@ For a given container with objects of type T
         T{ 3, 3.3f, 'd' },
         T{ 3, 3.3f, 'e' },
         T{ 3, 3.3f, 'f' } } };
+
+where T is defined as follow
+
+    struct T
+    {
+        int i;
+        float f;
+        char c;
+    };
+
 
 create a function
 
@@ -41,7 +51,7 @@ or functor
         }
     };
 
-or lambda which defines a key how would you like to groups object. Pass it to groupBy function
+or lambda which defines a key how would you like to group said objects. Pass it to groupBy function
 
     std::map< int, std::vector< T > > const actual
         = groupBy( v.begin(), v.end(), & get_i );
@@ -69,9 +79,5 @@ If
 
 let me know !
 
-You may pass as many grouping criterias as you wish. For more complicated example please take a look at main.cpp with unit tests.
-
-## Tested with
-clang++-3.5
-g++-4.9
+You may pass as many grouping functions as you wish. For more complicated examples please take a look at main.cpp which contains unit tests.
 
