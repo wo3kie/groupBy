@@ -1,3 +1,11 @@
+/*
+* Copyright (C) 2014 Łukasz Czerwiński
+*
+* GitHub: https://github.com/wo3kie/groupBy
+*
+* Distributed under the BSD Software License (see file license)
+*/
+
 #ifndef _GROUP_BY_H_
 #define _GROUP_BY_H_
 
