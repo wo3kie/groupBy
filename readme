@@ -1,0 +1,77 @@
+## GroupBy
+groupBy is a simple project. In fact this is just one function only. The function takes a container and groups its items by a given key.
+  
+## Copyright (C) 2014 Lukasz Czerwinski
+  
+## Requirements
+C++11  
+  
+## How to use is?
+For a given container with objects of type T
+
+    struct T
+    {
+        int i;
+        float f;
+        char c;
+    };
+
+    std::vector< T > v{ {
+        T{ 1, 1.1f, 'a' },
+        T{ 2, 2.2f, 'b' },
+        T{ 2, 2.2f, 'c' },
+        T{ 3, 3.3f, 'd' },
+        T{ 3, 3.3f, 'e' },
+        T{ 3, 3.3f, 'f' } } };
+
+create a function
+
+    int get_i( T const & t )
+    {
+        return t.i;
+    }
+
+or functor
+
+    struct Get_i
+    {
+        int operator(){ T const & t )
+        {
+            return t.i;
+        }
+    };
+
+or lambda which defines a key how would you like to groups object. Pass it to groupBy function
+
+    std::map< int, std::vector< T > > const actual
+        = groupBy( v.begin(), v.end(), & get_i );
+
+or
+
+    std::map< int, std::vector< T > > const actual
+        = groupBy( v.begin(), v.end(), Get_i() );
+  
+or
+  
+    std::map< int, std::vector< T > > const actual
+        = groupBy( v.begin(), v.end(), []( T const & t ){ return t.i; } );
+
+As a result you get a std::map with grouped objects
+
+    std::map< int, std::vector< T > > const expected {
+      { { 1, { T{ 1, 1.1f, 'a' } } },
+        { 2, { T{ 2, 2.2f, 'b' }, T{ 2, 2.2f, 'c' } } },
+        { 3, { T{ 3, 3.3f, 'd' }, T{ 3, 3.3f, 'e' }, T{ 3, 3.3f, 'f' } } } }
+    };
+
+If
+    assert( actual != expected );
+
+let me know !
+
+You may pass as many grouping criterias as you wish. For more complicated example please take a look at main.cpp with unit tests.
+
+## Tested with
+clang++-3.5
+g++-4.9
+
