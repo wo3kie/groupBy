@@ -46,9 +46,12 @@ int main()
         std::map< int, std::vector< T > > const actual = groupBy( v.begin(), v.end(), & get_i );
 
         std::map< int, std::vector< T > > const expected {
-          { { 1, { T{ 1, 1.1f, 'a' } } },
-            { 2, { T{ 2, 2.2f, 'b' }, T{ 2, 2.2f, 'c' } } },
-            { 3, { T{ 3, 3.3f, 'd' }, T{ 3, 3.3f, 'e' }, T{ 3, 3.3f, 'f' } } } }
+          { { 1,
+                { T{ 1, 1.1f, 'a' } } },
+            { 2,
+                { T{ 2, 2.2f, 'b' }, T{ 2, 2.2f, 'c' } } },
+            { 3,
+                { T{ 3, 3.3f, 'd' }, T{ 3, 3.3f, 'e' }, T{ 3, 3.3f, 'f' } } } }
         };
 
         assert( actual == expected );
@@ -59,12 +62,15 @@ int main()
             = groupBy( v.begin(), v.end(), & get_i, Get_f());
 
         std::map< int, std::map< float, std::vector< T > > > const expected{
-            { { 1, { { 1.1f, { T{ 1, 1.1f, 'a' } } } } },
-              { 2, { { 2.2f, { T{ 2, 2.2f, 'b' }, T{ 2, 2.2f, 'c' } } } } },
+            { { 1,
+                { { 1.1f,
+                    { T{ 1, 1.1f, 'a' } } } } },
+              { 2,
+                  { { 2.2f,
+                    { T{ 2, 2.2f, 'b' }, T{ 2, 2.2f, 'c' } } } } },
               { 3,
                 { { 3.3f,
-                    { T{ 3, 3.3f, 'd' }, T{ 3, 3.3f, 'e' },
-                      T{ 3, 3.3f, 'f' } } } } } }
+                    { T{ 3, 3.3f, 'd' }, T{ 3, 3.3f, 'e' }, T{ 3, 3.3f, 'f' } } } } } }
         };
 
         assert( actual == expected );
@@ -75,16 +81,21 @@ int main()
             = groupBy( v.begin(), v.end(), & get_i, Get_f(), get_c );
 
         std::map< int, std::map< float, std::map< char, std::vector< T > > > > const expected {
-            { { 1, { { 1.1f, { { 'a', { T{ 1, 1.1f, 'a' } } } } } } },
+            { { 1,
+                { { 1.1f,
+                    { { 'a', { T{ 1, 1.1f, 'a' } } } } } } },
               { 2,
                 { { 2.2f,
                     { { 'b', { T{ 2, 2.2f, 'b' } } },
                       { 'c', { T{ 2, 2.2f, 'c' } } } } } } },
               { 3,
                 { { 3.3f,
-                    { { 'd', { T{ 3, 3.3f, 'd' } } },
-                      { 'e', { T{ 3, 3.3f, 'e' } } },
-                      { 'f', { T{ 3, 3.3f, 'f' } } } } } } } } };
+                    { { 'd',
+                          { T{ 3, 3.3f, 'd' } } },
+                      { 'e',
+                          { T{ 3, 3.3f, 'e' } } },
+                      { 'f',
+                          { T{ 3, 3.3f, 'f' } } } } } } } } };
 
         assert(actual == expected);
     }
