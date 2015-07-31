@@ -19,6 +19,11 @@ int get_i( T const & t )
     return t.i;
 }
 
+const int & get_cir( T const & t )
+{
+    return t.i;
+}
+
 struct Get_f
 {
     float operator()( T const & t ) const
@@ -44,6 +49,21 @@ int main()
 
     {
         std::map< int, std::vector< T > > const actual = groupBy( v.begin(), v.end(), & get_i );
+
+        std::map< int, std::vector< T > > const expected {
+          { { 1,
+                { T{ 1, 1.1f, 'a' } } },
+            { 2,
+                { T{ 2, 2.2f, 'b' }, T{ 2, 2.2f, 'c' } } },
+            { 3,
+                { T{ 3, 3.3f, 'd' }, T{ 3, 3.3f, 'e' }, T{ 3, 3.3f, 'f' } } } }
+        };
+
+        assert( actual == expected );
+    }
+
+    {
+        std::map< int, std::vector< T > > const actual = groupBy( v.begin(), v.end(), & get_cir );
 
         std::map< int, std::vector< T > > const expected {
           { { 1,
