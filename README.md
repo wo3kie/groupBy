@@ -13,72 +13,90 @@ C++11
 clang++ --std=c++11 main.cpp -o main
 
 ## Tested with
-clang++-3.5
+clang++-3.5  
 g++-4.9
 
 ## How to use it?
 For a container with objects of type T
 
-    std::vector< T > v{ {
-        T{ 1, 1.1f, 'a' },
-        T{ 2, 2.2f, 'b' },
-        T{ 2, 2.2f, 'c' },
-        T{ 3, 3.3f, 'd' },
-        T{ 3, 3.3f, 'e' },
-        T{ 3, 3.3f, 'f' } } };
+```{r, engine='cpp'}  
+std::vector< T > v{ {
+    T{ 1, 1.1f, 'a' },
+    T{ 2, 2.2f, 'b' },
+    T{ 2, 2.2f, 'c' },
+    T{ 3, 3.3f, 'd' },
+    T{ 3, 3.3f, 'e' },
+    T{ 3, 3.3f, 'f' } } };
+```
 
 where T is defined as follow
 
-    struct T
-    {
-        int i;
-        float f;
-        char c;
-    };
-
+```{r, engine='cpp'}  
+struct T
+{
+    int i;
+    float f;
+    char c;
+};
+```
 
 create a function
 
-    int get_i( T const & t )
-    {
-        return t.i;
-    }
+```{r, engine='cpp'}  
+int get_i( T const & t )
+{
+    return t.i;
+}
+```
 
 or functor
 
-    struct Get_i
+```{r, engine='cpp'}  
+struct Get_i
+{
+    int operator(){ T const & t )
     {
-        int operator(){ T const & t )
-        {
-            return t.i;
-        }
-    };
+        return t.i;
+    }
+};
+```
 
 or lambda which defines how would you like to group said objects. Pass it to groupBy function
 
-    std::map< int, std::vector< T > > const actual
-        = groupBy( v.begin(), v.end(), & get_i );
+```{r, engine='cpp'}  
+std::map< int, std::vector< T > > const actual
+    = groupBy( v.begin(), v.end(), & get_i );
+```
 
 or
 
-    std::map< int, std::vector< T > > const actual
-        = groupBy( v.begin(), v.end(), Get_i() );
+```{r, engine='cpp'}  
+std::map< int, std::vector< T > > const actual
+    = groupBy( v.begin(), v.end(), Get_i() );
+```
   
 or
   
-    std::map< int, std::vector< T > > const actual
-        = groupBy( v.begin(), v.end(), []( T const & t ){ return t.i; } );
+```{r, engine='cpp'}  
+std::map< int, std::vector< T > > const actual
+    = groupBy( v.begin(), v.end(), []( T const & t ){ return t.i; } );
+```
 
 As a result you get a std::map with objects being groupped
 
-    std::map< int, std::vector< T > > const expected {
-      { { 1, { T{ 1, 1.1f, 'a' } } },
-        { 2, { T{ 2, 2.2f, 'b' }, T{ 2, 2.2f, 'c' } } },
-        { 3, { T{ 3, 3.3f, 'd' }, T{ 3, 3.3f, 'e' }, T{ 3, 3.3f, 'f' } } } }
-    };
+```{r, engine='cpp'}  
+std::map< int, std::vector< T > > const expected {
+  { { 1, { T{ 1, 1.1f, 'a' } } },
+    { 2, { T{ 2, 2.2f, 'b' }, T{ 2, 2.2f, 'c' } } },
+    { 3, { T{ 3, 3.3f, 'd' }, T{ 3, 3.3f, 'e' }, T{ 3, 3.3f, 'f' } } } }
+};
+```
 
-If
-    assert( actual != expected );
+If  
+
+```{r, engine='cpp'}  
+assert( actual != expected );
+```
 
 let me know !
 
