@@ -9,8 +9,8 @@ Project webpage: https://github.com/wo3kie/groupBy
 ## Requirements
 C++11  
 
-## How to compile it
-clang++ --std=c++11 main.cpp -o main
+## How to build it
+make
 
 ## Tested with
 clang++-3.5  
