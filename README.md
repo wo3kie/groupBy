@@ -1,7 +1,7 @@
 ## Copyright (C) 2014 Łukasz Czerwiński
   
 ## GroupBy
-groupBy is a simple project. This is a function which takes a container and groups its items by a given groupping one function or many functions.
+groupBy is a simple project. This is a function which takes a container and groups its items by a given groupping function or many groupping functions.
 
 ## Website
 Project webpage: https://github.com/wo3kie/groupBy
