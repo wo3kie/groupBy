@@ -1,20 +1,16 @@
-## Copyright (C) 2014 Lukasz Czerwinski
+## Copyright (C) 2014 Łukasz Czerwiński
   
 ## GroupBy
-groupBy is a simple project. In fact this is just one function only. The function takes a container and groups its items by a given groupping function or functions.
+groupBy is a simple project. This is a function which takes a container and groups its items by a given groupping one function or many functions.
 
-##
+## Website
 Project webpage: https://github.com/wo3kie/groupBy
 
 ## Requirements
 C++11  
 
-## How to build it
+## How to build it?
 make
-
-## Tested with
-clang++-3.5  
-g++-4.9
 
 ## How to use it?
 For a container with objects of type T
