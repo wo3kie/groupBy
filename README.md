@@ -4,7 +4,7 @@
 groupBy is a simple project. This is a function which takes a container and groups its items by a given groupping function or many groupping functions.
 
 ## Website
-Project webpage: https://github.com/wo3kie/groupBy
+https://github.com/wo3kie/groupBy
 
 ## Requirements
 C++11  
